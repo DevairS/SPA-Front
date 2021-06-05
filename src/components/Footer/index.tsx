@@ -12,6 +12,7 @@ import {
   Text,
   ContainerTop,
   ContainerBottom,
+  TextTitle,
 } from './styles';
 import Logo from '../../assets/logo.png';
 
@@ -24,16 +25,19 @@ const Footer: React.FC = () => {
         </ContainerLogo>
         <ContainerInfo>
           <div>
+            <TextTitle>Localização</TextTitle>
             <Text>loren loren</Text>
             <Text>loren loren</Text>
             <Text>loren loren</Text>
           </div>
           <div>
+            <TextTitle>Sobre-nós</TextTitle>
             <Text>loren loren</Text>
             <Text>loren loren</Text>
             <Text>loren loren</Text>
           </div>
           <div>
+            <TextTitle>Contato</TextTitle>
             <Text>loren loren</Text>
             <Text>loren loren</Text>
             <Text>loren loren</Text>
@@ -45,7 +49,6 @@ const Footer: React.FC = () => {
           <InstagramIcon fontSize="large" style={{ color: '#fff' }} />
         </ContainerSocias>
       </ContainerTop>
-
       <ContainerBottom>
         <Text>@2021 Copyright - Devair Augusto da Silva</Text>
       </ContainerBottom>

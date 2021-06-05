@@ -29,6 +29,8 @@
     "prettier"
   ],
   "rules": {
+    "no-shadow": "off",
+    "react/prop-types": "off",
     "prettier/prettier": "warn",
     "no-unused-expressions": "off",
     "react/no-array-index-key": "off",

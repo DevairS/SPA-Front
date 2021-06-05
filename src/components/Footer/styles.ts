@@ -27,6 +27,11 @@ export const ContainerInfo = styled.div`
   justify-content: space-around;
   width: 60%;
 `;
+export const TextTitle = styled.h3`
+  font-weight: bold;
+  color: #fff;
+`;
+
 export const Text = styled.p`
   color: #fff;
 `;
