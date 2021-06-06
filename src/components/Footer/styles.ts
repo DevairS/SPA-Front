@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  position: relative;
-  bottom: 0;
   width: 100%;
-  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  flex: 1;
 `;
 export const ContainerTop = styled.div`
   display: flex;

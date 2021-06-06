@@ -9,11 +9,13 @@ import {
   ContainerRight,
   Form,
   Image,
-  // Input,
-  // Label,
 } from './styles';
 
-const Login: React.FC = () => {
+type Props = {
+  onLogin(): void;
+};
+
+const Login: React.FC<Props> = ({ onLogin }) => {
   return (
     <Container>
       <ContainerLeft>
@@ -22,10 +24,11 @@ const Login: React.FC = () => {
           onSubmit={async (values) => {
             await new Promise((resolve) => setTimeout(resolve, 500));
             console.log(values);
+            onLogin();
           }}
           validationSchema={Yup.object().shape({
-            login: Yup.string().required('Required'),
-            senha: Yup.string().required('Required'),
+            login: Yup.string().required('Campo Obrigatório'),
+            senha: Yup.string().required('Campo Obrigatório'),
           })}
         >
           {(props) => {
@@ -64,11 +67,6 @@ const Login: React.FC = () => {
                   value={values.senha}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={
-                    errors.senha && touched.senha
-                      ? 'text-input error'
-                      : 'text-input'
-                  }
                 />
                 {errors.senha && touched.senha && (
                   <div className="input-feedback">{errors.senha}</div>
@@ -80,7 +78,7 @@ const Login: React.FC = () => {
         </Formik>
       </ContainerLeft>
       <ContainerRight>
-        <Image src={imageLogin} alt="Logo" width="500" height="700" />
+        <Image src={imageLogin} alt="Logo" width="500" height="500" />
       </ContainerRight>
     </Container>
   );
