@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Login from '../Login';
-import RegisterUser from '../RegisterUser';
+import Navigator from '../Navigator';
 
 import { Container } from './styles';
 
@@ -12,7 +12,7 @@ const Main: React.FC = () => {
   };
   return (
     <Container>
-      {onLogin ? <RegisterUser /> : <Login onLogin={handleLogin} />}
+      {onLogin ? <Navigator /> : <Login onLogin={handleLogin} />}
     </Container>
   );
 };
