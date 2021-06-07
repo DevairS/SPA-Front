@@ -20,7 +20,7 @@ const Login: React.FC<Props> = ({ onLogin }) => {
     <Container>
       <ContainerLeft>
         <Formik
-          initialValues={{ login: '', senha: '' }}
+          initialValues={{ login: '', password: '' }}
           onSubmit={async (values) => {
             await new Promise((resolve) => setTimeout(resolve, 500));
             console.log(values);
@@ -61,15 +61,15 @@ const Login: React.FC<Props> = ({ onLogin }) => {
                 )}
                 <p>senha</p>
                 <input
-                  id="senha"
+                  id="password"
                   placeholder="Entre com sua senha"
-                  type="text"
-                  value={values.senha}
+                  type="password"
+                  value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {errors.senha && touched.senha && (
-                  <div className="input-feedback">{errors.senha}</div>
+                {errors.password && touched.password && (
+                  <div className="input-feedback">{errors.password}</div>
                 )}
                 <button type="submit">Submit</button>
               </Form>
