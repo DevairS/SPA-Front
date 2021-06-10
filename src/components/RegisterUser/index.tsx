@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Container, Form } from './styles';
+import { api } from '../../services';
 
 const RegisterUser: React.FC = () => {
   return (
@@ -11,6 +12,16 @@ const RegisterUser: React.FC = () => {
         onSubmit={async (values) => {
           await new Promise((resolve) => setTimeout(resolve, 500));
           console.log(values);
+          try {
+            await api.post('/CreateUser', {
+              name: values.name,
+              user: values.user,
+              password: values.password,
+              email: values.email,
+            });
+          } catch (error) {
+            console.log('meu amigo deu um erro ai ');
+          }
         }}
         validationSchema={Yup.object().shape({
           name: Yup.string().required('Campo Obrigatório'),

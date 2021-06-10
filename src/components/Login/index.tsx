@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -28,7 +27,7 @@ const Login: React.FC<Props> = ({ onLogin }) => {
           }}
           validationSchema={Yup.object().shape({
             login: Yup.string().required('Campo Obrigatório'),
-            senha: Yup.string().required('Campo Obrigatório'),
+            password: Yup.string().required('Campo Obrigatório'),
           })}
         >
           {(props) => {
@@ -59,7 +58,8 @@ const Login: React.FC<Props> = ({ onLogin }) => {
                 {errors.login && touched.login && (
                   <div className="input-feedback">{errors.login}</div>
                 )}
-                <p>senha</p>
+
+                <p>Senha</p>
                 <input
                   id="password"
                   placeholder="Entre com sua senha"
@@ -67,6 +67,11 @@ const Login: React.FC<Props> = ({ onLogin }) => {
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={
+                    errors.password && touched.password
+                      ? 'text-input error'
+                      : 'text-input'
+                  }
                 />
                 {errors.password && touched.password && (
                   <div className="input-feedback">{errors.password}</div>

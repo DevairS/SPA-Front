@@ -17,7 +17,7 @@ const Navigator: React.FC = () => {
 
   return (
     <Container>
-      <Tabs indicatorColor="primary" textColor="primary">
+      <Tabs>
         <Tab label="Cadastrar Usuário" onClick={handleChangeUser} />
         <Tab label="Lista de Usuários" onClick={handleChangeList} />
       </Tabs>
