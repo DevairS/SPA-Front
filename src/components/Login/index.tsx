@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import imageLogin from '../../assets/imageLogin.jpg';
+import { api } from '../../services';
 import {
   Container,
   ContainerLeft,
@@ -23,7 +24,18 @@ const Login: React.FC<Props> = ({ onLogin }) => {
           onSubmit={async (values) => {
             await new Promise((resolve) => setTimeout(resolve, 500));
             console.log(values);
-            onLogin();
+            try {
+              const { data } = await api.post('/Login', {
+                user: values.login,
+                password: values.password,
+              });
+              console.log(data);
+              if (data !== 'User not found!') {
+                onLogin();
+              }
+            } catch (error) {
+              console.log(error);
+            }
           }}
           validationSchema={Yup.object().shape({
             login: Yup.string().required('Campo Obrigatório'),
