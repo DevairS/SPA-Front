@@ -2,8 +2,14 @@ import React from 'react';
 import { Container, LogoMenu, Navlinks, NavMenu } from './styles';
 import Logo from '../../assets/logo.png';
 import { MenuItems } from './menuItems';
+import { api } from '../../services';
 
 const Navbar: React.FC = () => {
+  const handleLogout = (): void => {
+    localStorage.removeItem('token');
+    api.defaults.headers.Autjorization = undefined;
+    window.location.reload();
+  };
   return (
     <Container>
       <LogoMenu>
@@ -18,6 +24,9 @@ const Navbar: React.FC = () => {
           );
         })}
       </NavMenu>
+      <button type="button" onClick={handleLogout}>
+        logout
+      </button>
     </Container>
   );
 };

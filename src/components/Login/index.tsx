@@ -11,11 +11,7 @@ import {
   Image,
 } from './styles';
 
-type Props = {
-  onLogin(): void;
-};
-
-const Login: React.FC<Props> = ({ onLogin }) => {
+const Login: React.FC = () => {
   return (
     <Container>
       <ContainerLeft>
@@ -25,14 +21,15 @@ const Login: React.FC<Props> = ({ onLogin }) => {
             await new Promise((resolve) => setTimeout(resolve, 500));
             console.log(values);
             try {
-              const { data } = await api.post('/Login', {
+              const {
+                data: { token },
+              } = await api.post('/Login', {
                 user: values.login,
                 password: values.password,
               });
-              console.log(data);
-              if (data !== 'User not found!') {
-                onLogin();
-              }
+              localStorage.setItem('token', JSON.stringify(token));
+              api.defaults.headers.Authorization = token;
+              window.location.reload();
             } catch (error) {
               console.log(error);
             }
