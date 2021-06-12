@@ -1,5 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { api } from '../services';
+import Loading from '../components/Loading';
 
 interface AuthContextData {
   signed: boolean;
@@ -10,6 +11,16 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+      setAuthenticated(true);
+    }
+    setLoading(false);
+  }, []);
 
   const signIn = async (x: {
     user: string;
@@ -30,6 +41,10 @@ export const AuthProvider: React.FC = ({ children }) => {
       console.log('erro');
     }
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <AuthContext.Provider value={{ signed: authenticated, signIn }}>

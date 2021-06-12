@@ -25,7 +25,7 @@ const UserList: React.FC = () => {
         </Tr>
         {users.map((user, index) => (
           <Tr key={index}>
-            <Th>{user.password}</Th>
+            <Th>{user.name}</Th>
             <Th>{user.user}</Th>
             <Th>{user.email}</Th>
             <Th>{user.password}</Th>

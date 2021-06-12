@@ -8,16 +8,20 @@ export const Container = styled.div`
 
 export const Table = styled.table`
   width: 70%;
+  border-radius: 20px;
 `;
 
 export const Tr = styled.tr`
+  background-color: #fff;
   :nth-child(1) {
-    background-color: #018adf;
+    background-color: #fff;
   }
 
   :nth-child(even) {
-    background-color: #dddddd;
+    background-color: #fff;
   }
 `;
 
-export const Th = styled.th``;
+export const Th = styled.th`
+  padding: 10px;
+`;

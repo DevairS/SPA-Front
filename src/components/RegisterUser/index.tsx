@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Container, Form } from './styles';
+import { Snackbar } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import { Container, Form, Input, Label, Error, Button } from './styles';
 import { api } from '../../services';
 
 const RegisterUser: React.FC = () => {
+  const [state, setState] = useState(false);
+  const handleClose = (): void => {
+    setState(false);
+  };
+
   return (
     <Container>
+      <Snackbar
+        open={state}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        onClose={handleClose}
+        autoHideDuration={4000}
+      >
+        <Alert>Usuário cadastrado com sucesso!!!</Alert>
+      </Snackbar>
+
       <Formik
         initialValues={{ name: '', user: '', email: '', password: '' }}
         onSubmit={async (values) => {
@@ -19,8 +35,10 @@ const RegisterUser: React.FC = () => {
               password: values.password,
               email: values.email,
             });
+            setState(true);
+            window.location.reload();
           } catch (error) {
-            console.log('meu amigo deu um erro ai ');
+            console.log(error);
           }
         }}
         validationSchema={Yup.object().shape({
@@ -41,10 +59,10 @@ const RegisterUser: React.FC = () => {
           } = props;
           return (
             <Form onSubmit={handleSubmit}>
-              <p>Nome</p>
-              <input
+              <Label>Nome</Label>
+              <Input
                 id="name"
-                placeholder="Devair Augusto da Silva"
+                placeholder="Seu nome"
                 type="text"
                 value={values.name}
                 onChange={handleChange}
@@ -55,25 +73,21 @@ const RegisterUser: React.FC = () => {
                     : 'text-input'
                 }
               />
-              {errors.name && touched.name && (
-                <div className="input-feedback">{errors.name}</div>
-              )}
+              {errors.name && touched.name && <Error>{errors.name}</Error>}
 
-              <p>user</p>
-              <input
+              <Label>Login</Label>
+              <Input
                 id="user"
-                placeholder="DevairS"
+                placeholder="Seu login"
                 type="text"
                 value={values.user}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.user && touched.user && (
-                <div className="input-feedback">{errors.user}</div>
-              )}
+              {errors.user && touched.user && <Error>{errors.user}</Error>}
 
-              <p>E-mail</p>
-              <input
+              <Label>E-mail</Label>
+              <Input
                 id="email"
                 placeholder="devairaugustodasilva@gmail.com"
                 type="text"
@@ -81,12 +95,10 @@ const RegisterUser: React.FC = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.email && touched.email && (
-                <div className="input-feedback">{errors.email}</div>
-              )}
+              {errors.email && touched.email && <Error>{errors.email}</Error>}
 
-              <p>Senha</p>
-              <input
+              <Label>Senha</Label>
+              <Input
                 id="password"
                 placeholder="Sua senha"
                 type="password"
@@ -95,9 +107,9 @@ const RegisterUser: React.FC = () => {
                 onBlur={handleBlur}
               />
               {errors.password && touched.password && (
-                <div className="input-feedback">{errors.password}</div>
+                <Error>{errors.password}</Error>
               )}
-              <button type="submit">Cadastra</button>
+              <Button type="submit">Cadastra</Button>
             </Form>
           );
         }}

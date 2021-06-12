@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import { Container } from './styles';
+import { Container, ContainerSelect, Select } from './styles';
 import RegisterUser from '../RegisterUser';
 import UserList from '../UserList';
 
 const Navigator: React.FC = () => {
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(true);
 
   const handleChangeUser = (): void => {
     setState(true);
@@ -17,10 +15,10 @@ const Navigator: React.FC = () => {
 
   return (
     <Container>
-      <Tabs>
-        <Tab label="Cadastrar Usuário" onClick={handleChangeUser} />
-        <Tab label="Lista de Usuários" onClick={handleChangeList} />
-      </Tabs>
+      <ContainerSelect>
+        <Select onClick={handleChangeUser}>Cadastrar Novo Usuário</Select>
+        <Select onClick={handleChangeList}>Lista de Usuários</Select>
+      </ContainerSelect>
       {state ? <RegisterUser /> : <UserList />}
     </Container>
   );
