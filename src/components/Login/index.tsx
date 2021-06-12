@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import AuthContext from '../../Context/AuthContext';
 import imageLogin from '../../assets/imageLogin.jpg';
-import { api } from '../../services';
 import {
   Container,
   ContainerLeft,
@@ -12,6 +12,9 @@ import {
 } from './styles';
 
 const Login: React.FC = () => {
+  const { signed, signIn } = useContext(AuthContext);
+
+  console.log(signed);
   return (
     <Container>
       <ContainerLeft>
@@ -20,19 +23,7 @@ const Login: React.FC = () => {
           onSubmit={async (values) => {
             await new Promise((resolve) => setTimeout(resolve, 500));
             console.log(values);
-            try {
-              const {
-                data: { token },
-              } = await api.post('/Login', {
-                user: values.login,
-                password: values.password,
-              });
-              localStorage.setItem('token', JSON.stringify(token));
-              api.defaults.headers.Authorization = token;
-              window.location.reload();
-            } catch (error) {
-              console.log(error);
-            }
+            signIn();
           }}
           validationSchema={Yup.object().shape({
             login: Yup.string().required('Campo Obrigatório'),
