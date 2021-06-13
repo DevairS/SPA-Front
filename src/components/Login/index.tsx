@@ -10,6 +10,7 @@ import {
   ButtonLogin,
   Container,
   ContainerRight,
+  ContainerSwap,
   Error,
   Form,
   Input,
@@ -104,9 +105,11 @@ const Login: React.FC = () => {
                     <Error>{errors.password}</Error>
                   )}
                   <Button type="submit">Submit</Button>
-                  <ButtonLogin onClick={handleLogin}>
-                    Faça seu cadastro
-                  </ButtonLogin>
+                  <ContainerSwap>
+                    <ButtonLogin onClick={handleLogin}>
+                      Faça seu cadastro
+                    </ButtonLogin>
+                  </ContainerSwap>
                 </Form>
               );
             }}

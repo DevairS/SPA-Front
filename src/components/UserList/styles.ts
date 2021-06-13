@@ -14,6 +14,21 @@ export const ContainerCard = styled.div`
   background-color: #f5f8fa;
   width: 70%;
   border-radius: 16px;
+  animation-name: zoom;
+  animation-duration: 1s;
+
+  @keyframes zoom {
+    0% {
+      opacity: 0;
+      transform: scale3d(0.7, 0.7, 0.7);
+    }
+    50% {
+      opacity: 0.5;
+    }
+    80% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const ContainerCarousel = styled(Carousel)`

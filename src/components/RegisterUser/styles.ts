@@ -11,6 +11,21 @@ export const Form = styled.form`
   width: 300px;
   -webkit-box-shadow: 6px 9px 11px 4px rgba(0, 0, 0, 0.64);
   box-shadow: 6px 9px 11px 4px rgba(0, 0, 0, 0.64);
+  animation-name: zoom;
+  animation-duration: 1s;
+
+  @keyframes zoom {
+    0% {
+      opacity: 0;
+      transform: scale3d(0.7, 0.7, 0.7);
+    }
+    50% {
+      opacity: 0.5;
+    }
+    80% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Label = styled.label`
@@ -51,4 +66,13 @@ export const Button = styled.button`
   &:focus {
     outline: none;
   }
+`;
+
+export const ContainerSwap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+export const ButtonLogin = styled.a`
+  color: blue;
+  cursor: pointer;
 `;

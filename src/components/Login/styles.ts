@@ -11,6 +11,19 @@ export const Container = styled.div`
 export const ContainerRight = styled.div`
   display: flex;
   align-items: center;
+  animation-name: fade;
+  animation-duration: 2s;
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 70%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
 `;
 
 export const Form = styled.form`
@@ -73,6 +86,9 @@ export const Button = styled.button`
 export const ButtonLogin = styled.a`
   color: blue;
   cursor: pointer;
-  text-align: end;
   padding-bottom: 25px;
+`;
+export const ContainerSwap = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;

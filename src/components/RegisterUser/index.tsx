@@ -3,7 +3,16 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import { Container, Form, Input, Label, Error, Button } from './styles';
+import {
+  Container,
+  Form,
+  Input,
+  Label,
+  Error,
+  Button,
+  ButtonLogin,
+  ContainerSwap,
+} from './styles';
 import { api } from '../../services';
 import AuthContext from '../../Context/AuthContext';
 
@@ -14,6 +23,9 @@ const RegisterUser: React.FC = () => {
     setState(false);
   };
 
+  const handleLogin = (): void => {
+    window.location.reload();
+  };
   return (
     <Container>
       <Snackbar
@@ -116,6 +128,15 @@ const RegisterUser: React.FC = () => {
                 <Error>{errors.password}</Error>
               )}
               <Button type="submit">Cadastra</Button>
+              {signed ? (
+                <div />
+              ) : (
+                <ContainerSwap>
+                  <ButtonLogin type="button" onClick={handleLogin}>
+                    Ja possui cadastro? faça o login
+                  </ButtonLogin>
+                </ContainerSwap>
+              )}
             </Form>
           );
         }}
