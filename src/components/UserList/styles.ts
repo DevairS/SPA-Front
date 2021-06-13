@@ -16,7 +16,12 @@ export const ContainerCard = styled.div`
   border-radius: 16px;
   animation-name: zoom;
   animation-duration: 1s;
-
+  @media (max-width: 1024px) {
+    width: 90%;
+  }
+  @media (max-width: 500px) {
+    width: 95%;
+  }
   @keyframes zoom {
     0% {
       opacity: 0;
@@ -50,6 +55,9 @@ export const InfosCard = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
+  @media (max-width: 500px) {
+    width: 75%;
+  }
 `;
 
 export const TextName = styled.p`
@@ -65,6 +73,9 @@ export const ContainerAvatar = styled.div`
   justify-content: center;
   align-items: center;
   width: 20%;
+  @media (max-width: 500px) {
+    width: 25%;
+  }
 `;
 
 export const ImageAvatar = styled.img`

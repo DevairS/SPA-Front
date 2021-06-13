@@ -8,6 +8,13 @@ export const Container = styled.div`
   width: 100%;
   height: 100px;
   margin-bottom: 60px;
+  @media (max-width: 1200px) {
+    margin-bottom: 0px;
+  }
+
+  @media (max-width: 600px) {
+    height: 50px;
+  }
 `;
 
 export const LogoMenu = styled.div`
@@ -45,7 +52,11 @@ export const Button = styled.button`
   color: #d00000;
   padding: 15px;
   transition-duration: 0.4s;
-
+  @media (max-width: 500px) {
+    width: 100%;
+    font-size: 10px;
+    margin: 2px;
+  }
   &:hover {
     background: #9d0208;
     color: #fff;
@@ -53,5 +64,15 @@ export const Button = styled.button`
 
   &:focus {
     outline: 0;
+  }
+`;
+
+export const Image = styled.img`
+  width: 120px;
+  height: 78px;
+  @media (max-width: 500px) {
+    width: 80px;
+    height: 36px;
+    margin: 2px;
   }
 `;

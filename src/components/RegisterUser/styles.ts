@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  @media (max-width: 1200px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -13,6 +19,16 @@ export const Form = styled.form`
   box-shadow: 6px 9px 11px 4px rgba(0, 0, 0, 0.64);
   animation-name: zoom;
   animation-duration: 1s;
+
+  @media (max-width: 1200px) {
+    width: 500px;
+  }
+  @media (max-width: 900px) {
+    width: 400px;
+  }
+  @media (max-width: 500px) {
+    width: 70%;
+  }
 
   @keyframes zoom {
     0% {

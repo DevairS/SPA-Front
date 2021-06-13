@@ -12,6 +12,11 @@ export const ContainerSelect = styled.div`
   justify-content: space-evenly;
   width: 70%;
   margin-bottom: 100px;
+  @media (max-width: 900px) {
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 20px;
+  }
 `;
 export const Select = styled.a`
   color: #fff;
@@ -28,5 +33,22 @@ export const Select = styled.a`
     background-color: black;
     -webkit-box-shadow: 6px 9px 11px 4px rgba(0, 0, 0, 0.64);
     box-shadow: 6px 9px 11px 4px rgba(0, 0, 0, 0.64);
+  }
+  @media (max-width: 900px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    padding: 5px;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    font-size: 15px;
+    margin: 2px;
+  }
+
+  @media (max-width: 320px) {
+    justify-content: center;
   }
 `;

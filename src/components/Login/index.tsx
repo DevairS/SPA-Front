@@ -33,15 +33,6 @@ const Login: React.FC = () => {
 
   return (
     <Container>
-      <Snackbar
-        open={state}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        onClose={handleClose}
-        autoHideDuration={4000}
-      >
-        <Alert severity="error">Usuário não encontrado!!!</Alert>
-      </Snackbar>
-
       {register ? (
         <RegisterUser />
       ) : (
@@ -116,6 +107,14 @@ const Login: React.FC = () => {
           </Formik>
         </ContainerRight>
       )}
+      <Snackbar
+        open={state}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        onClose={handleClose}
+        autoHideDuration={4000}
+      >
+        <Alert severity="error">Usuário não encontrado!!!</Alert>
+      </Snackbar>
     </Container>
   );
 };

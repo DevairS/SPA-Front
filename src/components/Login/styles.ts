@@ -4,16 +4,23 @@ export const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin-right: 300px;
   align-items: center;
+  margin-right: 300px;
+  @media (max-width: 1200px) {
+    justify-content: center;
+    margin-right: 0px;
+  }
 `;
 
 export const ContainerRight = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   animation-name: fade;
   animation-duration: 2s;
-
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
   @keyframes fade {
     0% {
       opacity: 0;
@@ -35,6 +42,16 @@ export const Form = styled.form`
   width: 300px;
   -webkit-box-shadow: 6px 9px 11px 4px rgba(0, 0, 0, 0.64);
   box-shadow: 6px 9px 11px 4px rgba(0, 0, 0, 0.64);
+
+  @media (max-width: 1200px) {
+    width: 500px;
+  }
+  @media (max-width: 900px) {
+    width: 400px;
+  }
+  @media (max-width: 500px) {
+    width: 70%;
+  }
 `;
 
 export const Label = styled.label`

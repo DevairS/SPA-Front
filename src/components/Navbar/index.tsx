@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button, Container, LogoMenu, NavMenu } from './styles';
+import { Button, Container, Image, LogoMenu, NavMenu } from './styles';
 import Logo from '../../assets/logoSpace3.png';
 // import { MenuItems } from './menuItems';
 import { api } from '../../services';
@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
   return (
     <Container>
       <LogoMenu>
-        <img src={Logo} alt="ImageLogo" width="120" height="78" />
+        <Image src={Logo} alt="ImageLogo" />
       </LogoMenu>
       <NavMenu>
         {/* {MenuItems.map((item, index) => {

@@ -107,8 +107,8 @@ const RegisterUser: React.FC = () => {
               <Label>E-mail</Label>
               <Input
                 id="email"
-                placeholder="devairaugustodasilva@gmail.com"
-                type="text"
+                placeholder="exemplo@exemplo.com"
+                type="email"
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -133,7 +133,7 @@ const RegisterUser: React.FC = () => {
               ) : (
                 <ContainerSwap>
                   <ButtonLogin type="button" onClick={handleLogin}>
-                    Ja possui cadastro? faça o login
+                    Já possui cadastro? faça o login
                   </ButtonLogin>
                 </ContainerSwap>
               )}
