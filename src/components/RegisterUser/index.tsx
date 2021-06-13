@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Snackbar } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { Container, Form, Input, Label, Error, Button } from './styles';
 import { api } from '../../services';
+import AuthContext from '../../Context/AuthContext';
 
 const RegisterUser: React.FC = () => {
+  const { signed, signIn } = useContext(AuthContext);
   const [state, setState] = useState(false);
-  const handleClose = (): void => {
+  const handleCloseSnackbar = (): void => {
     setState(false);
   };
 
@@ -17,7 +19,7 @@ const RegisterUser: React.FC = () => {
       <Snackbar
         open={state}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        onClose={handleClose}
+        onClose={handleCloseSnackbar}
         autoHideDuration={4000}
       >
         <Alert>Usuário cadastrado com sucesso!!!</Alert>
@@ -29,14 +31,18 @@ const RegisterUser: React.FC = () => {
           await new Promise((resolve) => setTimeout(resolve, 500));
           console.log(values);
           try {
+            setState(true);
             await api.post('/CreateUser', {
               name: values.name,
               user: values.user,
               password: values.password,
               email: values.email,
             });
-            setState(true);
-            window.location.reload();
+            if (!signed) {
+              signIn(values);
+            } else {
+              window.location.reload();
+            }
           } catch (error) {
             console.log(error);
           }

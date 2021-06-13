@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Button, Container, LogoMenu, Navlinks, NavMenu } from './styles';
+import { Button, Container, LogoMenu, NavMenu } from './styles';
 import Logo from '../../assets/logoSpace3.png';
-import { MenuItems } from './menuItems';
+// import { MenuItems } from './menuItems';
 import { api } from '../../services';
 import AuthContext from '../../Context/AuthContext';
 

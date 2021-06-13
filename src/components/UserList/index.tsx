@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table, Tr, Th } from './styles';
-
+import {
+  Container,
+  ContainerCard,
+  Card,
+  ImageAvatar,
+  ContainerCarousel,
+  InfosCard,
+  ContainerAvatar,
+  TextName,
+  Text,
+} from './styles';
+import avatar from '../../assets/pessoa.jpeg';
 import { api } from '../../services';
 
 const UserList: React.FC = () => {
@@ -14,24 +24,52 @@ const UserList: React.FC = () => {
     loadUsers();
   }, []);
 
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
   return (
     <Container>
-      <Table>
-        <Tr>
-          <Th>Nome</Th>
-          <Th>Usuário</Th>
-          <Th>E-mail</Th>
-          <Th>Senha</Th>
-        </Tr>
-        {users.map((user, index) => (
-          <Tr key={index}>
-            <Th>{user.name}</Th>
-            <Th>{user.user}</Th>
-            <Th>{user.email}</Th>
-            <Th>{user.password}</Th>
-          </Tr>
-        ))}
-      </Table>
+      <ContainerCard>
+        <ContainerCarousel responsive={responsive}>
+          {users.map((user, index) => {
+            return (
+              <Card key={index}>
+                <InfosCard>
+                  <TextName>{user.name}</TextName>
+                  <Text>{user.email}</Text>
+                  <Text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                  </Text>
+                </InfosCard>
+                <ContainerAvatar>
+                  <ImageAvatar
+                    src={avatar}
+                    alt="avata"
+                    width="78"
+                    height="78"
+                  />
+                </ContainerAvatar>
+              </Card>
+            );
+          })}
+        </ContainerCarousel>
+      </ContainerCard>
     </Container>
   );
 };
