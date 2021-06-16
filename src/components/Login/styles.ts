@@ -103,7 +103,8 @@ export const Button = styled.button`
 export const ButtonLogin = styled.a`
   color: blue;
   cursor: pointer;
-  padding-bottom: 25px;
+  padding-bottom: 15px;
+  margin-top: 10px;
 `;
 export const ContainerSwap = styled.div`
   display: flex;

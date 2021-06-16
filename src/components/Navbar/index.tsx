@@ -1,30 +1,16 @@
 import React, { useContext } from 'react';
 import { Button, Container, Image, LogoMenu, NavMenu } from './styles';
 import Logo from '../../assets/logoSpace3.png';
-// import { MenuItems } from './menuItems';
-import { api } from '../../services';
 import AuthContext from '../../Context/AuthContext';
 
 const Navbar: React.FC = () => {
-  const handleLogout = (): void => {
-    localStorage.removeItem('token');
-    api.defaults.headers.Autjorization = undefined;
-    window.location.reload();
-  };
-  const { signed } = useContext(AuthContext);
+  const { signed, handleLogout } = useContext(AuthContext);
   return (
     <Container>
       <LogoMenu>
         <Image src={Logo} alt="ImageLogo" />
       </LogoMenu>
       <NavMenu>
-        {/* {MenuItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <Navlinks href={item.url}>{item.title}</Navlinks>
-            </li>
-          );
-        })} */}
         {signed ? (
           <Button type="button" onClick={handleLogout}>
             logout

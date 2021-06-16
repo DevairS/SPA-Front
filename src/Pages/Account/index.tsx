@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Container, ContainerSelect, Select } from './styles';
-import RegisterUser from '../RegisterUser';
-import UserList from '../UserList';
+import Navbar from '../../components/Navbar';
+import RegisterUser from '../../components/RegisterUser';
+import UserList from '../../components/UserList';
 
-const Navigator: React.FC = () => {
+import { Container, ContainerSelect, Select } from './styles';
+
+const Account: React.FC = () => {
   const [state, setState] = useState(true);
 
   const handleChangeUser = (): void => {
@@ -12,9 +14,9 @@ const Navigator: React.FC = () => {
   const handleChangeList = (): void => {
     setState(false);
   };
-
   return (
     <Container>
+      <Navbar />
       <ContainerSelect>
         <Select onClick={handleChangeUser}>Cadastrar Novo Usuário</Select>
         <Select onClick={handleChangeList}>Lista de Usuários</Select>
@@ -24,4 +26,4 @@ const Navigator: React.FC = () => {
   );
 };
 
-export default Navigator;
+export default Account;

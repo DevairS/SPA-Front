@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
+import imageBackground from '../../assets/space2.jpg';
+
 export const Container = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
-  width: 100%;
+  height: 100vh;
+  background-image: url(${imageBackground});
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  align-items: center;
 `;
 
 export const ContainerSelect = styled.div`

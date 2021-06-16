@@ -15,6 +15,7 @@ import {
 } from './styles';
 import { api } from '../../services';
 import AuthContext from '../../Context/AuthContext';
+import showAlert from '../../utils/helpers/Alert';
 
 const RegisterUser: React.FC = () => {
   const { signed, signIn } = useContext(AuthContext);
@@ -50,10 +51,13 @@ const RegisterUser: React.FC = () => {
               password: values.password,
               email: values.email,
             });
+            showAlert({
+              message: 'Usuário cadastrado com sucesso',
+              type: 'success',
+            });
+
             if (!signed) {
               signIn(values);
-            } else {
-              window.location.reload();
             }
           } catch (error) {
             console.log(error);

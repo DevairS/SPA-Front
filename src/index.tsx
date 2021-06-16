@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Routes from './routes';
+import { AuthProvider } from './Context/AuthContext';
+import { SnackbarProvider } from './components/Snackbar';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SnackbarProvider />
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

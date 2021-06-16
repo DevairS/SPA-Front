@@ -14,7 +14,7 @@ import avatar from '../../assets/pessoa.jpeg';
 import { api } from '../../services';
 
 const UserList: React.FC = () => {
-  const [users, setUsers] = useState<UserType>([]);
+  const [users, setUsers] = useState<UserList>([]);
 
   useEffect(() => {
     const loadUsers = async (): Promise<void> => {

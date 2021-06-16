@@ -1,6 +1,6 @@
-declare type UserType = {
+declare type UserList = {
   name: string;
   user: string;
   email: string;
-  password: string;
+  password?: string;
 }[];

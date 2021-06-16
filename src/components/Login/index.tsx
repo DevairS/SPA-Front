@@ -1,8 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import Snackbar from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
 import AuthContext from '../../Context/AuthContext';
 
 import {
@@ -19,13 +17,8 @@ import {
 import RegisterUser from '../RegisterUser';
 
 const Login: React.FC = () => {
-  const { signed, signIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const [register, setRegister] = useState(false);
-  const [state, setState] = useState(false);
-
-  const handleClose = (): void => {
-    setState(false);
-  };
 
   const handleLogin = (): void => {
     setRegister(true);
@@ -42,9 +35,6 @@ const Login: React.FC = () => {
             onSubmit={async (values) => {
               await new Promise((resolve) => setTimeout(resolve, 500));
               signIn(values);
-              if (signed !== true) {
-                setState(true);
-              }
             }}
             validationSchema={Yup.object().shape({
               user: Yup.string().required('Campo Obrigatório'),
@@ -95,10 +85,10 @@ const Login: React.FC = () => {
                   {errors.password && touched.password && (
                     <Error>{errors.password}</Error>
                   )}
-                  <Button type="submit">Submit</Button>
+                  <Button type="submit">Entrar</Button>
                   <ContainerSwap>
                     <ButtonLogin onClick={handleLogin}>
-                      Faça seu cadastro
+                      Não tem conta? Faça seu cadastro
                     </ButtonLogin>
                   </ContainerSwap>
                 </Form>
@@ -107,14 +97,6 @@ const Login: React.FC = () => {
           </Formik>
         </ContainerRight>
       )}
-      <Snackbar
-        open={state}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        onClose={handleClose}
-        autoHideDuration={4000}
-      >
-        <Alert severity="error">Usuário não encontrado!!!</Alert>
-      </Snackbar>
     </Container>
   );
 };

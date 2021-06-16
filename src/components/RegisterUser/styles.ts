@@ -91,4 +91,5 @@ export const ContainerSwap = styled.div`
 export const ButtonLogin = styled.a`
   color: blue;
   cursor: pointer;
+  margin-top: 10px;
 `;

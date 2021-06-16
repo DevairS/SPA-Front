@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { api } from '../services';
-import Loading from '../components/Loading';
+import { Loading } from '../components';
+import showAlert from '../utils/helpers/Alert';
 
 interface AuthContextData {
   signed: boolean;
   signIn(x: { user: string; password: string }): Promise<void>;
+  handleLogout(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -14,11 +16,17 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('oi');
     const token = localStorage.getItem('token');
-    if (token) {
-      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-      setAuthenticated(true);
+    console.log('useEffecttoken:', token);
+
+    if (token !== null) {
+      if (token !== 'undefined') {
+        console.log('token dentro>', token);
+        setAuthenticated(true);
+      }
     }
+
     setLoading(false);
   }, []);
 
@@ -33,13 +41,23 @@ export const AuthProvider: React.FC = ({ children }) => {
         user: x.user,
         password: x.password,
       });
-
-      setAuthenticated(auth);
+      api.defaults.headers.Authorization = `Bearer ${token}`;
       localStorage.setItem('token', JSON.stringify(token));
-      api.defaults.headers.Authorization = token;
+      if (auth) {
+        showAlert({ message: 'login efetuado com sucesso', type: 'success' });
+      } else {
+        showAlert({ message: 'Email ou senha incorreto', type: 'error' });
+      }
+      setAuthenticated(auth);
     } catch (error) {
-      console.log('erro');
+      console.log('error login', error);
     }
+  };
+
+  const handleLogout = (): void => {
+    setAuthenticated(false);
+    localStorage.removeItem('token');
+    api.defaults.headers.Authorization = undefined;
   };
 
   if (loading) {
@@ -47,7 +65,9 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ signed: authenticated, signIn }}>
+    <AuthContext.Provider
+      value={{ signed: authenticated, signIn, handleLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );
