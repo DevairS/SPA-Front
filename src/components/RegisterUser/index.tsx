@@ -131,7 +131,7 @@ const RegisterUser: React.FC = () => {
               {errors.password && touched.password && (
                 <Error>{errors.password}</Error>
               )}
-              <Button type="submit">Cadastra</Button>
+              <Button type="submit">Cadastrar</Button>
               {signed ? (
                 <div />
               ) : (
